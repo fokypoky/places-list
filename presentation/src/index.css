@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  background: rgb(219,219,255);
+  background: linear-gradient(90deg, rgba(219,219,255,1) 0%, rgba(199,233,255,1) 63%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.wrapper {
+  padding-top: 5rem;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+
+.act-button{
+  border-radius: 10px;
+  border: none;
+  font-size: 11pt;
+  width: 150px;
+  background: rgb(255,233,238);
+  background: linear-gradient(90deg, rgba(255,233,238,1) 15%, rgba(229,244,255,1) 80%);
+  margin-left: 5px;
+}
+
+.placeItemButton:hover{
+  background: rgb(255,147,173);
+  background: linear-gradient(90deg, rgba(255,147,173,1) 15%, rgba(108,193,255,1) 80%);
+};
