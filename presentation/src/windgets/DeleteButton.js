@@ -1,11 +1,11 @@
 import React from "react";
 import './styles.css';
 
-const DeleteButton = ({props, onDelete}) => {
+const DeleteButton = ({ props, onDelete }) => {
     const deleteItem = () => {
-        fetch(`http://localhost:6800/api/places/${props.Id}`, {method: 'DELETE'})
+        fetch(`http://api:80/api/places/${props.Id}`, { method: 'DELETE' })
             .then(response => {
-                if(!response.ok) {
+                if (!response.ok) {
                     throw new Error(response.body);
                 }
 
@@ -13,10 +13,10 @@ const DeleteButton = ({props, onDelete}) => {
             }).then(text => {
                 onDelete(props.Id);
             }).catch(e => console.log(e));
-    }
+    };
     return (
         <button className="act-button placeItemButton" onClick={deleteItem}>Удалить</button>
-    )
-}
+    );
+};
 
 export default DeleteButton;

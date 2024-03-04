@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/fokypoky/projects/places-list/api/API/API.csproj": {}
+    "D:\\projects\\places-list\\api\\API\\API.csproj": {}
   },
   "projects": {
-    "/home/fokypoky/projects/places-list/api/API/API.csproj": {
+    "D:\\projects\\places-list\\api\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fokypoky/projects/places-list/api/API/API.csproj",
+        "projectUniqueName": "D:\\projects\\places-list\\api\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "/home/fokypoky/projects/places-list/api/API/API.csproj",
-        "packagesPath": "/home/fokypoky/.nuget/packages/",
-        "outputPath": "/home/fokypoky/projects/places-list/api/API/obj/",
+        "projectPath": "D:\\projects\\places-list\\api\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\aofok\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\places-list\\api\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/fokypoky/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\aofok\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -38,6 +38,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.16, )"
@@ -74,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.116/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -52,7 +52,7 @@ const styles = {
     button: {
         marginRight: '10px'
     }
-}
+};
 
 export default function PlaceItem({ place, onDelete, updDescription }) {
     return (
@@ -60,20 +60,20 @@ export default function PlaceItem({ place, onDelete, updDescription }) {
             <div style={styles.placeItemBlock}>
                 <div style={styles.placeItemHeader}>
                     <div style={styles.placeTitle}>
-                        { place.Title }, { place.VisitDate }
+                        {place.Title}, {place.VisitDate}
                     </div>
                 </div>
 
                 <div style={styles.placeItemBody}>
                     <textarea style={styles.placeItemInput} value={place.Description}
                         onChange={e => updDescription(place.Id, e.target.value)}
-                        />
+                    />
                 </div>
                 <div style={styles.placeItemFooter}>
-                    <ChangeButton props={place}/>
-                    <DeleteButton props={place} onDelete={onDelete}/>
+                    <ChangeButton props={place} />
+                    <DeleteButton props={place} onDelete={onDelete} />
                 </div>
             </div>
         </li>
-    )
+    );
 }
