@@ -1,4 +1,4 @@
-FROM node:14 as builder
+FROM node:20.11.1 as builder
 
 # Установка рабочей директории внутри контейнера
 WORKDIR /app
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Используем легковесный Nginx образ для обслуживания статических файлов
-FROM nginx:alpine
+FROM nginx:alpine3.18
 
 # Копируем собранные статические файлы React из предыдущего образа
 COPY --from=builder /app/build /usr/share/nginx/html

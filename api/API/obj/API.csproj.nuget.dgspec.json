@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projects\\places-list\\api\\API\\API.csproj": {}
+    "/home/fokypoky/projects/places-list/api/API/API.csproj": {}
   },
   "projects": {
-    "D:\\projects\\places-list\\api\\API\\API.csproj": {
+    "/home/fokypoky/projects/places-list/api/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projects\\places-list\\api\\API\\API.csproj",
+        "projectUniqueName": "/home/fokypoky/projects/places-list/api/API/API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\projects\\places-list\\api\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\aofok\\.nuget\\packages\\",
-        "outputPath": "D:\\projects\\places-list\\api\\API\\obj\\",
+        "projectPath": "/home/fokypoky/projects/places-list/api/API/API.csproj",
+        "packagesPath": "/home/fokypoky/.nuget/packages/",
+        "outputPath": "/home/fokypoky/projects/places-list/api/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aofok\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/fokypoky/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.116/RuntimeIdentifierGraph.json"
         }
       }
     }

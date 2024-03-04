@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   api:
     container_name: places-api
@@ -7,12 +7,14 @@ services:
       - elastic-uri=http://esearch:9200
     depends_on:
       - esearch
+    ports:
+      - "6692:80"
 
   places-presentation:
     container_name: places-presentation
     image: places-presentation:1.0.0
     ports:
-      - "3000:80"
+      - "3100:80"
     depends_on:
       - api
       - esearch
@@ -26,7 +28,7 @@ services:
       - discovery.type=single-node
     volumes:
       - elastic-s:/usr/share/elasticsearch/data
-    
+
 volumes:
   elastic-s:
     external: true
