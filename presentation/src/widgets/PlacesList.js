@@ -1,5 +1,5 @@
 import React from "react";
-import PlaceItem from "./windgets/PlaceItem";
+import PlaceItem from "./PlaceItem";
 
 const styles = {
     ul: {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import PlacesList from "./PlacesList";
-import AddItemForm from "./windgets/AddItemForm";
+import PlacesList from "./widgets/PlacesList";
+import AddItemForm from "./widgets/AddItemForm";
 import PlacesRepository from './infrastructure/PlacesRepository';
 
 const placesRepository = new PlacesRepository();
