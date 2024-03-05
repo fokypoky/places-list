@@ -377,7 +377,6 @@ Initializing 2024-03-05T13:23:45+03:00
 
 
 Section A - Check results
-
 [INFO] 1 - Host Configuration
 [INFO] 1.1 - Linux Hosts Specific Configuration
 WARNING: No blkio throttle.read_bps_device support
@@ -423,7 +422,7 @@ WARNING: daemon is not using the default seccomp profile
 [PASS] 1.2.2 - Ensure that the version of Docker is up to date (Manual)
 [INFO]        * Using 25.0.3 which is current
 [INFO]        * Check with your operating system vendor for support and security maintenance for Docker
-W
+
 [INFO] 2 - Docker daemon configuration
 [NOTE] 2.1 - Run the Docker daemon as a non-root user, if possible (Manual)
 docker-bench-security.sh: 37: [[: not found
@@ -501,8 +500,10 @@ docker-bench-security.sh: 276: [[: not found
 [INFO]       * File not found
 
 [INFO] 4 - Container Images and Build File
-[INFO] 4.1 - Ensure that a user for the container has been created (Automated)
-[INFO]      * No containers running
+[WARN] 4.1 - Ensure that a user for the container has been created (Automated)
+[WARN]      * Running as root: places-presentation
+[WARN]      * Running as root: places-api
+[WARN]      * Running as root: esearch
 [NOTE] 4.2 - Ensure that containers use only trusted base images (Manual)
 [NOTE] 4.3 - Ensure that unnecessary packages are not installed in the container (Manual)
 [NOTE] 4.4 - Ensure images are scanned and rebuilt to include security patches (Manual)
@@ -526,14 +527,78 @@ docker-bench-security.sh: 276: [[: not found
 [NOTE] 4.12 - Ensure all signed artifacts are validated (Manual)
 
 [INFO] 5 - Container Runtime
-[INFO]   * No containers running, skipping Section 5
 [PASS] 5.1 - Ensure swarm mode is not Enabled, if not needed (Automated)
+[WARN] 5.2 - Ensure that, if applicable, an AppArmor Profile is enabled (Automated)
+[WARN]      * No AppArmorProfile Found: places-presentation
+[WARN]      * No AppArmorProfile Found: places-api
+[WARN]      * No AppArmorProfile Found: esearch
+[WARN] 5.3 - Ensure that, if applicable, SELinux security options are set (Automated)
+[WARN]      * No SecurityOptions Found: places-presentation
+[WARN]      * No SecurityOptions Found: places-api
+[WARN]      * No SecurityOptions Found: esearch
+[PASS] 5.4 - Ensure that Linux kernel capabilities are restricted within containers (Automated)
+[PASS] 5.5 - Ensure that privileged containers are not used (Automated)
+[PASS] 5.6 - Ensure sensitive host system directories are not mounted on containers (Automated)
+[PASS] 5.7 - Ensure sshd is not run within containers (Automated)
+[PASS] 5.8 - Ensure privileged ports are not mapped within containers (Automated)
+[WARN] 5.9 - Ensure that only needed ports are open on the container (Manual)
+[WARN]      * Port in use: 3100 in places-presentation
+[WARN]      * Port in use: 6692 in places-api
+[PASS] 5.10 - Ensure that the host's network namespace is not shared (Automated)
+[WARN] 5.11 - Ensure that the memory usage for containers is limited (Automated)
+[WARN]       * Container running without memory restrictions: places-presentation
+[WARN]       * Container running without memory restrictions: places-api
+[WARN]       * Container running without memory restrictions: esearch
+[WARN] 5.12 - Ensure that CPU priority is set appropriately on containers (Automated)
+[WARN]       * Container running without CPU restrictions: places-presentation
+[WARN]       * Container running without CPU restrictions: places-api
+[WARN]       * Container running without CPU restrictions: esearch
+[WARN] 5.13 - Ensure that the container's root filesystem is mounted as read only (Automated)
+[WARN]       * Container running with root FS mounted R/W: places-presentation
+[WARN]       * Container running with root FS mounted R/W: places-api
+[WARN]       * Container running with root FS mounted R/W: esearch
+[WARN] 5.14 - Ensure that incoming container traffic is bound to a specific host interface (Automated)
+[WARN]       * Port being bound to wildcard IP: 0.0.0.0 in places-presentation
+[WARN]       * Port being bound to wildcard IP: 0.0.0.0 in places-api
+0
+0
+0
+[PASS] 5.15 - Ensure that the 'on-failure' container restart policy is set to '5' (Automated)
+[PASS] 5.16 - Ensure that the host's process namespace is not shared (Automated)
+[PASS] 5.17 - Ensure that the host's IPC namespace is not shared (Automated)
+[PASS] 5.18 - Ensure that host devices are not directly exposed to containers (Manual)
+[INFO] 5.19 - Ensure that the default ulimit is overwritten at runtime if needed (Manual)
+[INFO]       * Container no default ulimit override: places-presentation
+[INFO]       * Container no default ulimit override: places-api
+[INFO]       * Container no default ulimit override: esearch
+[PASS] 5.20 - Ensure mount propagation mode is not set to shared (Automated)
+[PASS] 5.21 - Ensure that the host's UTS namespace is not shared (Automated)
+[PASS] 5.22 - Ensure the default seccomp profile is not Disabled (Automated)
+[NOTE] 5.23 - Ensure that docker exec commands are not used with the privileged option (Automated)
+[NOTE] 5.24 - Ensure that docker exec commands are not used with the user=root option (Manual)
+[PASS] 5.25 - Ensure that cgroup usage is confirmed (Automated)
+[WARN] 5.26 - Ensure that the container is restricted from acquiring additional privileges (Automated)
+[WARN]       * Privileges not restricted: places-presentation
+[WARN]       * Privileges not restricted: places-api
+[WARN]       * Privileges not restricted: esearch
+[WARN] 5.27 - Ensure that container health is checked at runtime (Automated)
+[WARN]       * Health check not set: places-presentation
+[WARN]       * Health check not set: places-api
+[WARN]       * Health check not set: esearch
+[INFO] 5.28 - Ensure that Docker commands always make use of the latest version of their image (Manual)
+[WARN] 5.29 - Ensure that the PIDs cgroup limit is used (Automated)
+[WARN]       * PIDs limit not set: places-presentation
+[WARN]       * PIDs limit not set: places-api
+[WARN]       * PIDs limit not set: esearch
+[PASS] 5.30 - Ensure that Docker's default bridge 'docker0' is not used (Manual)
+[PASS] 5.31 - Ensure that the host's user namespaces are not shared (Automated)
+[PASS] 5.32 - Ensure that the Docker socket is not mounted inside any containers (Automated)
 
 [INFO] 6 - Docker Security Operations
 [INFO] 6.1 - Ensure that image sprawl is avoided (Manual)
 [INFO]      * There are currently: 9 images
 [INFO] 6.2 - Ensure that container sprawl is avoided (Manual)
-[INFO]      * There are currently a total of 4 containers, with 0 of them currently running
+[INFO]      * There are currently a total of 4 containers, with 3 of them currently running
 
 [INFO] 7 - Docker Swarm Configuration
 [PASS] 7.1 - Ensure that the minimum number of manager nodes have been created in a swarm (Automated) (Swarm mode not enabled)
@@ -549,8 +614,8 @@ docker-bench-security.sh: 276: [[: not found
 
 Section C - Score
 
-[INFO] Checks: 86
-[INFO] Score: 1
+[INFO] Checks: 117
+[INFO] Score: 5
 ```
 
 **Меры по устранению уязвимостей**
@@ -578,3 +643,30 @@ Section C - Score
 
 - [WARN] 4.6 - Ensure that HEALTHCHECK instructions have been added to container images (Automated). 
 Решение: Включить проверку здоровья контейнера
+
+- [WARN] 5.2 - Ensure that, if applicable, an AppArmor Profile is enabled (Automated). 
+Решение: включить политику безопасности для контейнера: <code>docker run --interactive --tty --security-opt='apparmor:PROFILENAME' ubuntu /bin/bash</code>
+
+- [WARN] 5.3 - Ensure that, if applicable, SELinux security options are set (Automated) 
+Решение: <code>docker ps --quiet --all | xargs docker inspect --format '{{ .Id }}: SecurityOpt={{ .HostConfig.SecurityOpt }}'</code>
+
+- [WARN] 5.9 - Ensure that only needed ports are open on the container (Manual). Решение: Не пробрасывать неиспользуемые порты
+
+- [WARN] 5.11 - Ensure that the memory usage for containers is limited (Automated)Решение: ограничить использование памяти контейнерам <code>docker run -d --memory="256m"</code>
+
+- [WARN] 5.12 - Ensure that CPU priority is set appropriately on containers (Automated). 
+Решение: ограничить использование CPU <code>docker run --interactive --tty --cpu-shares 512 centos /bin/bash</code>
+
+- [WARN] 5.13 - Ensure that the container's root filesystem is mounted as read only (Automated). Решение: сделать монтируемый persistence read only
+
+- [WARN] 5.14 - Ensure that incoming container traffic is bound to a specific host interface (Automated). 
+Решение: привязка порта к конкретному интерфейсу <code>docker run --detach --publish 10.2.3.4:49153:80 CONTAINER_NAME</code>
+
+- [WARN] 5.26 - Ensure that the container is restricted from acquiring additional privileges (Automated). 
+Решение: запретить выдачу привилегий внутри контейнеров <code>docker run --rm -it --security-opt=no-new-privileges ubuntu bash</code>
+
+- [WARN] 5.27 - Ensure that container health is checked at runtime (Automated). 
+Решение: для проверки состояния контейнера во время выполнения <code>docker run -d --health-cmd='stat /etc/passwd || exit 1' nginx</code>
+
+- [WARN] 5.29 - Ensure that the PIDs cgroup limit is used (Automated). Решение: ограничить создание процессов внутри контейнера
+<code>docker run -it --pids-limit 100 <Image_ID></code>
