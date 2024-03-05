@@ -1,9 +1,12 @@
 import React from "react";
 import "./styles.css";
+import PlacesRepository from '../infrastructure/PlacesRepository';
+
+const placesRepository = new PlacesRepository();
 
 const DeleteButton = ({ props, onDelete }) => {
 	const deleteItem = () => {
-		fetch(`http://localhost:6692/api/places/${props.Id}`, { method: "DELETE" })
+		placesRepository.removePlace(props)
 			.then(response => {
 				if (!response.ok) {
 					throw new Error(response.body);

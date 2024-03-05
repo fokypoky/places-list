@@ -1,67 +1,69 @@
 import React, { useEffect, useState } from "react";
 import PlacesList from "./PlacesList";
 import AddItemForm from "./windgets/AddItemForm";
-const PlacesRepository = require("./infrastructure/repositories/PlacesRepository");
+import PlacesRepository from './infrastructure/PlacesRepository';
+
 const placesRepository = new PlacesRepository();
 
 function App() {
-	const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState([]);
 
-	useEffect(() => {
-		const fetchPlaces = async () => {
-			const result = await placesRepository.getAllPlaces();
-			setPlaces(result.response);
-		};
-		fetchPlaces();
-	}, []);
+  useEffect(() => {
+    placesRepository.getAllPlaces()
+      .then(r => {
+        if (!r.ok) {
+          throw new Error(r.statusText);
+        }
+        return r.text();
+      }).then(t => setPlaces(JSON.parse(t)))
+      .catch(e => console.error(e));
+  }, []);
 
-	const addNewPlace = place => {
-		const postUrl = `http://localhost:6692/api/places?title=${place.Title}&description=${place.Description}&visitdate=${place.VisitDate}`;
+  const addNewPlace = place => {
+    placesRepository.addPlace(place)
+      .then(r => {
+        if (!r.ok) {
+          throw new Error(r.text());
+        }
+        return r.text();
+      })
+      .then(data => {
+        place.Id = data;
+        setPlaces([...places, place]);
+      })
+      .catch(e => console.log(e));
+  };
 
-		fetch(postUrl, { method: "POST" })
-			.then(r => {
-				if (!r.ok) {
-					throw new Error(r.text());
-				}
-				return r.text();
-			})
-			.then(data => {
-				place.Id = data;
-				setPlaces([...places, place]);
-			})
-			.catch(e => console.log(e));
-	};
+  const deleteItem = id => {
+    setPlaces(places.filter(place => place.Id !== id));
+  };
 
-	const deleteItem = id => {
-		setPlaces(places.filter(place => place.Id !== id));
-	};
-
-	const updateDescription = (id, description) => {
-		setPlaces(
-			places.map(place => {
-				if (place.Id === id) {
-					return {
-						Id: place.Id,
-						Title: place.Title,
-						Description: description,
-						VisitDate: place.VisitDate,
-					};
-				}
-				return place;
-			})
-		);
-	};
-	return (
-		<div className='wrapper'>
-			<h1>Список посещенных мест</h1>
-			<AddItemForm addItem={addNewPlace} />
-			<PlacesList
-				places={places}
-				onDelete={deleteItem}
-				updDescription={updateDescription}
-			/>
-		</div>
-	);
+  const updateDescription = (id, description) => {
+    setPlaces(
+      places.map(place => {
+        if (place.Id === id) {
+          return {
+            Id: place.Id,
+            Title: place.Title,
+            Description: description,
+            VisitDate: place.VisitDate,
+          };
+        }
+        return place;
+      })
+    );
+  };
+  return (
+    <div className='wrapper'>
+      <h1>Список посещенных мест</h1>
+      <AddItemForm addItem={addNewPlace} />
+      <PlacesList
+        places={places}
+        onDelete={deleteItem}
+        updDescription={updateDescription}
+      />
+    </div>
+  );
 }
 
 export default App;
