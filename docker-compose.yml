@@ -18,8 +18,6 @@ services:
     depends_on:
       - api
       - esearch
-    volumes:
-      - places-presentation:/etc/nginx/
 
   esearch:
     container_name: esearch
@@ -33,6 +31,3 @@ volumes:
   elastic-s:
     external: true
     name: elastic-s
-  places-presentation:
-    external: true
-    name: places-presentation
